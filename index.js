@@ -40,7 +40,7 @@ function patch (obj, opts) {
 
   obj.origQuery = obj.query;
   obj.query = function (sql, params_map, cb) {
-    if (_.isArray(params_map) || !_.isObject(params_map)) {
+    if (_.isArray(params_map) || _.isFunction(params_map) || !_.isObject(params_map)) {
       return this.origQuery.apply(this, arguments);
     }
     var res = parse_(sql);
